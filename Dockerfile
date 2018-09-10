@@ -1,4 +1,3 @@
-
 FROM debian:stretch-slim
 
 ARG GRAFANA_URL="https://s3-us-west-2.amazonaws.com/grafana-releases/master/grafana-latest.linux-x64.tar.gz"
@@ -12,8 +11,7 @@ ENV PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
     GF_PATHS_LOGS="/var/log/grafana" \
     GF_PATHS_PLUGINS="/var/lib/grafana/plugins" \
     GF_PATHS_PROVISIONING="/etc/grafana/provisioning"
-    GF_INSTALL_PLUGINS="grafana-worldmap-panel"
-
+  
 RUN apt-get update && apt-get install -qq -y tar libfontconfig curl ca-certificates && \
     mkdir -p "$GF_PATHS_HOME/.aws" && \
     curl "$GRAFANA_URL" | tar xfvz - --strip-components=1 -C "$GF_PATHS_HOME" && \
